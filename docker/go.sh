@@ -28,4 +28,4 @@ docker run -it --rm \
     --env NVIDIA_VISIBLE_DEVICES=all \
     --env NVIDIA_DRIVER_CAPABILITIES=graphics,utility,compute \
     --name rust_container \
-    rust_stm32f3:ubuntu22
+    rust_stm32f7:ubuntu22
