@@ -34,7 +34,7 @@ mod app {
     }
 
     #[init]
-    fn init(ctx: init::Context) -> (Shared, Local, init::Monotonics) {
+    fn init(ctx: init::Context) -> (Shared, Local) {
         let mut dp = ctx.device;
 
         // Promote RCC structure to HAL to be able to configure clocks
@@ -92,13 +92,13 @@ mod app {
             },
             // Move the monotonic timer to the RTIC run-time, this enables
             // scheduling (remove it after rtic v2.0.0)
-            init::Monotonics(),
+            // init::Monotonics(),
         )
     }
 
     // You can create also software task
     #[task(priority = 1, local=[led_red])]
-    fn sw_task(ctx: sw_task::Context) {
+    async fn sw_task(ctx: sw_task::Context) {
         ctx.local.led_red.set_high();
         #[cfg(debug_assertions)]
         hprintln!("Hello From sw_task").unwrap();
