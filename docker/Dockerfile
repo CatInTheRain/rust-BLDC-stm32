@@ -63,7 +63,7 @@ RUN sudo apt-get update && \
       qemu-system-arm
 
 # For Cortex-M4
-RUN rustup target add thumbv7em-none-eabihf
+RUN rustup target add thumbv7em-none-eabi
 
 ENV USER ${USER}
 

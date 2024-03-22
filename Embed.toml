@@ -1,5 +1,5 @@
 [default.general]
-chip = "STM32F767ZITx"
+chip = "STM32F302R8Tx"
 
 # No need to set this again, other profiles inherit from the "default" profile
 #[with_rtt.general]

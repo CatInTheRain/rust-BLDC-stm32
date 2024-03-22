@@ -2,7 +2,7 @@
 authors = ["Massimo Teppati Losè <massimo.teppatilose@santannapisa.it>"]
 edition = "2018"
 readme = "README.md"
-name = "hello-rust-embedded"
+name = "rust_bldc_stm32"
 version = "0.1.0"
 
 [dependencies]
@@ -33,17 +33,19 @@ cortex-m-rt = { version = ">=0.6.15,<0.8", features = ["device"] }
 # cortex-m-rtic = "1.0.0"
 rtic = {version = "2.0.1", features=["thumbv7-backend", "rtic-monotonics"]}
 # Panic behavior, see https://crates.io/keywords/panic-impl for alternatives
-# panic-halt = "0.2.0"
+panic-halt = "0.2.0"
 # [target.'cfg(debug_assertions)'.dependencies] I don't know if this works!
 panic-semihosting = { version = "0.6.0", features = ["exit"] }
 # Replace stm32f303xc with your target chip, see next section for more info
+# stm32f3xx-hal = { version = "0.10.0", features = ["ld", "rt", "stm32f303xc"] }
 stm32f7xx-hal = { version = "0.7.0", features = ["rt", "stm32f767"] }
 nb = "1"
 # rtt-target = {version="0.3.1",  features = ["cortex-m"]}
-
+# uncomment this only if you want to use qemu on rtic 
+# lm3s6965 = "0.2"
 # this lets you use `cargo fix`!
 [[bin]]
-name = "hello-rust-embedded"
+name = "rust_bldc_stm32"
 test = false
 bench = false
 
