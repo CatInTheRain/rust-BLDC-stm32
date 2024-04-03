@@ -221,6 +221,7 @@ mod app {
             pwm1.set_duty(duty_set));
 
         // optional) get the execution time
+        #[cfg(debug_assertions)]
         let elapsed_time = ctx.local.counter.now().duration_since_epoch().to_micros();
         ctx.local.counter.cancel().unwrap();
         // Time can be printed only in debug mode
