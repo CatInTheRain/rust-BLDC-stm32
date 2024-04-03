@@ -1,15 +1,2 @@
-**/*.rs.bk
-.#*
-.gdb_history
 Cargo.lock
 target/
-
-ws/
-
-# # editor files
-# .vscode/*
-# !.vscode/*.md
-# !.vscode/*.svd
-# !.vscode/launch.json
-# !.vscode/tasks.json
-# !.vscode/extensions.json
