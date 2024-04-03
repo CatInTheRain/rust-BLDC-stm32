@@ -33,7 +33,7 @@ cortex-m-rt = { version = ">=0.6.15,<0.8", features = ["device"] }
 # cortex-m-rtic = "1.0.0"
 rtic = {version = "2.0.1", features=["thumbv7-backend", "rtic-monotonics"]}
 # Panic behavior, see https://crates.io/keywords/panic-impl for alternatives
-# panic-halt = "0.2.0"
+panic-halt = "0.2.0"
 # [target.'cfg(debug_assertions)'.dependencies] I don't know if this works!
 panic-semihosting = { version = "0.6.0", features = ["exit"] }
 # Replace stm32f303xc with your target chip, see next section for more info
