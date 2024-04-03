@@ -25,6 +25,7 @@ rustup target add thumbv7em-none-eabihf # for Cortex-M7F (with FPU)
 sudo apt-get install gdb-multiarch openocd qemu-system-arm
 ```
 Finally clone this repository
+
 ```bash
 git clone https://github.com/CatInTheRain/rust-BLDC-stm32.git
 ```
@@ -85,7 +86,8 @@ The task of this project is to control the speed of the brushless motor of zero 
 
 The following video demonstrates this task.
 
-![](media/demo.MOV)
+https://github.com/CatInTheRain/rust-BLDC-stm32/assets/55113554/2415d398-1e7d-4431-9319-9d9dbee1cc24
+
 
 TODO: code discussion and difference in using or not RTIC
 TODO: other elements of interest
