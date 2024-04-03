@@ -2,7 +2,7 @@
 authors = ["Massimo Teppati Losè <massimo.teppatilose@santannapisa.it>"]
 edition = "2018"
 readme = "README.md"
-name = "hello-rust-embedded"
+name = "rust_bldc_stm32"
 version = "0.1.0"
 
 [dependencies]
@@ -43,7 +43,7 @@ nb = "1"
 
 # this lets you use `cargo fix`!
 [[bin]]
-name = "hello-rust-embedded"
+name = "rust_bldc_stm32"
 test = false
 bench = false
 
