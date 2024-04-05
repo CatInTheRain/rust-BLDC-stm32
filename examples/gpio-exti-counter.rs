@@ -125,7 +125,6 @@ fn main() -> ! {
     loop{
         cortex_m::interrupt::free(|cs| {
             let mut cnt = G_TIM5.borrow(cs).borrow_mut();
-            let ciao = cnt.as_mut().unwrap().get_interrupt();
             if G_START_CNT.borrow(cs).get() {
                 let mut elapsed_time = cnt.as_mut().unwrap().now().duration_since_epoch().to_micros();
                 let mut button = G_BUTTON.borrow(cs).borrow_mut();

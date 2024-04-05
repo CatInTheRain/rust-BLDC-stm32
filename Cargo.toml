@@ -41,6 +41,8 @@ stm32f7xx-hal = { version = "0.7.0", features = ["rt", "stm32f767"] }
 # nb = "1"
 # rtt-target = {version="0.3.1",  features = ["cortex-m"]}
 
+fugit = { version= "0.3.7" }
+
 # this lets you use `cargo fix`!
 [[bin]]
 name = "rust_bldc_stm32"
