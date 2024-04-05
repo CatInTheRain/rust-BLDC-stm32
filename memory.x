@@ -3,8 +3,15 @@ MEMORY
   /* NOTE 1 K = 1 KiBi = 1024 bytes */
   /* TODO Adjust these memory regions to match your device memory layout */
   /* These values correspond to the LM3S6965, one of the few devices QEMU can emulate */
-  FLASH : ORIGIN = 0x08000000, LENGTH = 64K
-  RAM : ORIGIN = 0x20000000, LENGTH = 16K
+  /* This is for QEMU! */
+  /* FLASH : ORIGIN = 0x08000000, LENGTH = 64K */
+  /* RAM : ORIGIN = 0x20000000, LENGTH = 16K */
+  /* This is for STM32F767 https://github.com/stm32-rs/stm32f7xx-hal/blob/main/memory_2048_368.x */
+  FLASH : ORIGIN = 0x08000000, LENGTH = 2M
+  RAM : ORIGIN = 0x20020000, LENGTH = 368K + 16K
+  ITCM : ORIGIN = 0x00000000, LENGTH = 16K /* Instruction Tighly Coupled Memory */
+  DTCM : ORIGIN = 0x20000000, LENGTH = 128K /* Data Tighly Coupled Memory */
+
 }
 
 /* This is where the call stack will be allocated. */

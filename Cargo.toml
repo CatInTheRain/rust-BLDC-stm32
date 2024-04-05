@@ -38,7 +38,7 @@ panic-halt = "0.2.0"
 panic-semihosting = { version = "0.6.0", features = ["exit"] }
 # Replace stm32f303xc with your target chip, see next section for more info
 stm32f7xx-hal = { version = "0.7.0", features = ["rt", "stm32f767"] }
-nb = "1"
+# nb = "1"
 # rtt-target = {version="0.3.1",  features = ["cortex-m"]}
 
 # this lets you use `cargo fix`!

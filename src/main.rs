@@ -30,13 +30,13 @@ mod app {
     // Resources shared between tasks
     #[shared]
     struct Shared {
-        timer: timer::CounterUs<TIM2>,
         pwm_ch1: PwmChannel<TIM9, 0>,
     }
     
     // Local resources to specific tasks (cannot be shared)
     #[local]
     struct Local {
+        timer: timer::CounterUs<TIM2>,
         button: gpio::PC13<Input>,
         led_blue: gpio::PB7<Output<PushPull>>,
         led_red: gpio::PB14<Output<PushPull>>,
@@ -46,7 +46,7 @@ mod app {
         esc_conf: EscConf,
     }
 
-// TODO implement timer handler to measure time
+    // Init Task for Peripheral Configuration
     #[init]
     fn init(ctx: init::Context) -> (Shared, Local) {
         let mut dp = ctx.device;
@@ -146,11 +146,11 @@ mod app {
         (
             // Initialization of shared resources
             Shared { 
-                timer,
                 pwm_ch1,
             },
             // Initialization of task local resources
             Local {
+                timer,
                 button,
                 led_blue,
                 led_red,
@@ -182,7 +182,7 @@ mod app {
         }
     }
 
-    #[task(binds = EXTI15_10, local = [button, led_red], shared=[timer, pwm_ch1])]
+    #[task(binds = EXTI15_10, local = [button, led_red], shared=[pwm_ch1])]
     fn button_pressed(mut ctx: button_pressed::Context) {
         // When Button press interrupt happens three things need to be done
         // 1) Disable PWM channel
@@ -194,12 +194,11 @@ mod app {
         ctx.local.button.clear_interrupt_pending_bit();
     }
 
-    #[task(binds = TIM2, local=[led_blue, counter, potmeter, adc, esc_conf], shared=[timer, pwm_ch1])]
+    #[task(binds = TIM2, local=[timer, led_blue, counter, potmeter, adc, esc_conf], shared=[pwm_ch1])]
     fn timer_expired(mut ctx: timer_expired::Context) {
         // When Timer Interrupt Happens several Things Need to be Done
         // 1) Clear Timer Pending Interrupt
-        ctx.shared.timer.lock(|tim| 
-            tim.clear_interrupt(Event::Update));
+        ctx.local.timer.clear_interrupt(Event::Update);
         // 2) Toggle the LED_blue
         ctx.local.led_blue.toggle();
         
@@ -221,11 +220,10 @@ mod app {
             pwm1.set_duty(duty_set));
 
         // optional) get the execution time
-        #[cfg(debug_assertions)]
-        let elapsed_time = ctx.local.counter.now().duration_since_epoch().to_micros();
+        let _elapsed_time = ctx.local.counter.now().duration_since_epoch().to_micros();
         ctx.local.counter.cancel().unwrap();
         // Time can be printed only in debug mode
         #[cfg(debug_assertions)]
-        hprintln!("Time elapsed: {}; adc_data: {}, duty set: {}", elapsed_time, adc_data, duty_set).unwrap();
+        hprintln!("Time elapsed: {}; adc_data: {}, duty set: {}", _elapsed_time, adc_data, duty_set).unwrap();
     }
 }
